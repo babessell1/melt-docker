@@ -10,34 +10,22 @@ RUN apt-get update && apt-get install -y \
     samtools \
     parallel
 
-# Install nim
-#RUN apt-get update && \
-#  apt-get install -y curl xz-utils gcc openssl ca-certificates git && \
-#  curl https://nim-lang.org/choosenim/init.sh -sSf | bash -s -- -y && \
-#  apt -y autoremove && \
-#  apt -y clean
-
-#ENV PATH=/home/ubuntu/.nimble/bin:$PATH
-
-#install strling
-#RUN git clone https://github.com/quinlan-lab/STRling.git && \
-#    cd STRling && \
-#    nimble install -y && \
-#    nim c -d:danger -d:release src/strling.nim && \
-#    cd ..
-
-# Change to your working directory
 WORKDIR /usr/local/bin
 
-RUN wget https://github.com/quinlan-lab/STRling/releases/download/v0.5.2/strling && \
-    chmod +x strling
+
+
+RUN wget https://sourceforge.net/projects/bowtie-bio/files/bowtie2/2.5.1/bowtie2-2.5.1-linux-x86_64.zip/download && \
+    unzip download
+
+RUN wget https://download.oracle.com/java/20/latest/jdk-20_linux-x64_bin.tar.gz && \
+    tar xvzf jdk-20_linux-x64_bin.tar.gz
 
 # Copy your application code into the container
-COPY run_strling.sh .
-RUN chmod +x run_strling.sh
+COPY run_melt.sh .
+RUN chmod +x run_melt.sh
 
 # give me all the permissions
 RUN chmod -R 777 /var/lib/ 
 
 # Set the entrypoint command
-CMD ["run_strling.sh"]
+CMD ["run_melt.sh"]
