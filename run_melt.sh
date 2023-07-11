@@ -29,10 +29,8 @@ process_file() {
     #cp "${ro_cramidx_dir}/${bname}.cram.crai" "${ro_cram_dir}/${bname}.cram.crai"
     samtools index -@ 2 "$cram"
 
-    # extract repetitive region binaries
-    /usr/local/bin/strling extract -f "$fasta" "$cram" "output/${bname}.bin"
-    # call strs
-    /usr/local/bin/strling call --output-prefix "output/${bname}" -f "$fasta" "$cram" "output/${bname}.bin"
+    # run melt on ALU elements
+    /usr/local/bin/jdk-20.0.1/bin/java -jar "${melt}/MELT.jar" Single -bamfile "$cram" -w output -t "${melt}/me_refs/Hg38/ALU_MELT.zip" -h "$fasta" -n "${melt}/add_bed_files/Hg38/Hg38.genes.bed" -c 20 -bowtie bowtie2-2.5.1-linux-x86_64/bowtie2 -samtools samtools
 
 }
 
@@ -42,6 +40,13 @@ cram1="$1"
 cram2="$2"
 fasta="$3"
 fastaidx="$4"
+melt="$5"
+
+# melt folder was tar format when uploaded to aws bucket
+tar -xvf melt
+
+# unzip all the files within the melt folder
+gunzip melt/*.gz
 
 # out = dir to export to
 mkdir -p output
