@@ -43,10 +43,10 @@ fastaidx="$4"
 melt="$5"
 
 # melt folder was tar format when uploaded to aws bucket
-tar -xvf melt
+tar -xvf "$melt"
 
 # unzip all the files within the melt folder
-gunzip melt/*.gz
+gunzip "${melt}/*.gz"
 
 # out = dir to export to
 mkdir -p output
