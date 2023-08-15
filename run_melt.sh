@@ -13,7 +13,7 @@ extract_subject_name() {
     echo "$match"
 }
 
-
+# force rebuild
 process_file() {
     local cram="$1"
     local fasta="$2"
