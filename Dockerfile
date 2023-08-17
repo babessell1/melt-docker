@@ -11,17 +11,19 @@ RUN apt-get update && apt-get install -y \
     git \
     build-essential \
     samtools \
-    parallel
+    parallel \
+    openjdk-20-jre-headless \
+    bowtie2
 
 WORKDIR /usr/local/bin
 
 
 
-RUN wget https://sourceforge.net/projects/bowtie-bio/files/bowtie2/2.5.1/bowtie2-2.5.1-linux-x86_64.zip/download && \
-    unzip download
+#RUN wget https://sourceforge.net/projects/bowtie-bio/files/bowtie2/2.5.1/bowtie2-2.5.1-linux-x86_64.zip/download && \
+#    unzip download
 
-RUN wget https://download.oracle.com/java/20/latest/jdk-20_linux-x64_bin.tar.gz && \
-    tar xvzf jdk-20_linux-x64_bin.tar.gz
+#RUN wget https://download.oracle.com/java/20/latest/jdk-20_linux-x64_bin.tar.gz && \
+#    tar xvzf jdk-20_linux-x64_bin.tar.gz
 
 # Copy your application code into the container
 COPY run_melt.sh .
