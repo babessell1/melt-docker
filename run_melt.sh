@@ -46,6 +46,11 @@ fasta="$3"
 fastaidx="$4"
 melt="$5"
 
+ro_fa_dir=$(dirname "$fasta")
+ro_faidx_dir=$(dirname "$fastaidx")
+bname_fa=$(basename "$fasta" .fa)
+cp "${ro_faidx_dir}/${bname}.fa.fai" "${ro_fa_dir}/${bname}.fa.fai"
+
 echo "preuntar"
 echo "$(ls)"
 
