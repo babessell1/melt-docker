@@ -29,13 +29,13 @@ process_file() {
     samtools index -@ 2 "$cram"
 
     # run melt on ALU elements
-    /usr/local/bin/jdk-20.0.1/bin/java -jar "${melt}/MELT.jar" Single -bamfile "$cram" -w output -t "${melt}/me_refs/Hg38/ALU_MELT.zip" -h "$fasta" -n "${melt}/add_bed_files/Hg38/Hg38.genes.bed" -c 20 -bowtie bowtie2-2.5.1-linux-x86_64/bowtie2 -samtools samtools
+    /usr/local/bin/jdk-20.0.1/bin/java -jar "MELT.jar" Single -bamfile "$cram" -w output -t "me_refs/Hg38/ALU_MELT.zip" -h "$fasta" -n "add_bed_files/Hg38/Hg38.genes.bed" -c 20 -bowtie bowtie2-2.5.1-linux-x86_64/bowtie2 -samtools samtools
 
     # LINEs
-    #/usr/local/bin/jdk-20.0.1/bin/java -jar "${melt}/MELT.jar" Single -bamfile "$cram" -w output -t "${melt}/me_refs/Hg38/LINE1_MELT.zip" -h "$fasta" -n "${melt}/add_bed_files/Hg38/Hg38.genes.bed" -c 20 -bowtie bowtie2-2.5.1-linux-x86_64/bowtie2 -samtools samtools
+    /usr/local/bin/jdk-20.0.1/bin/java -jar "MELT.jar" Single -bamfile "$cram" -w output -t "me_refs/Hg38/LINE1_MELT.zip" -h "$fasta" -n "add_bed_files/Hg38/Hg38.genes.bed" -c 20 -bowtie bowtie2-2.5.1-linux-x86_64/bowtie2 -samtools samtools
 
     # SVAs
-    #/usr/local/bin/jdk-20.0.1/bin/java -jar "${melt}/MELT.jar" Single -bamfile "$cram" -w output -t "${melt}/me_refs/Hg38/SVA_MELT.zip" -h "$fasta" -n "${melt}/add_bed_files/Hg38/Hg38.genes.bed" -c 20 -bowtie bowtie2-2.5.1-linux-x86_64/bowtie2 -samtools samtools
+    /usr/local/bin/jdk-20.0.1/bin/java -jar "MELT.jar" Single -bamfile "$cram" -w output -t "me_refs/Hg38/SVA_MELT.zip" -h "$fasta" -n "add_bed_files/Hg38/Hg38.genes.bed" -c 20 -bowtie bowtie2-2.5.1-linux-x86_64/bowtie2 -samtools samtools
 
 }
 
@@ -53,8 +53,9 @@ echo "$(ls)"
 
 # unzip all the files within the melt folder
 tar -xf "${melt}"
-
 melt="$(basename "$melt" .tar)"
+
+find "${melt}" -type f -name '*.gz' -exec gunzip {} +
 
 echo "postuntar"
 echo "$(ls)"
