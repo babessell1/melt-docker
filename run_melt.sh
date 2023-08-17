@@ -51,7 +51,7 @@ melt="$5"
 melt=$(tar -xvf "$melt")
 
 # unzip all the files within the melt folder
-gunzip -r "${melt}"
+tar -xf "${melt}"
 
 echo "$(ls)"
 
