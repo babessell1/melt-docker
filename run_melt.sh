@@ -53,6 +53,8 @@ melt=$(tar -xvf "$melt")
 # unzip all the files within the melt folder
 gunzip -r "${melt}"
 
+echo "$(ls)"
+
 # out = dir to export to
 mkdir -p output
 mkdir -p out
