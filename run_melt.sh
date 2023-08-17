@@ -29,13 +29,13 @@ process_file() {
     samtools index -@ 2 "$cram"
 
     # run melt on ALU elements
-    java -jar "${melt}/MELT.jar" Single -bamfile "$cram" -w output -t "${melt}/me_refs/Hg38/ALU_MELT.zip" -h "$fasta" -n "${melt}/add_bed_files/Hg38/Hg38.genes.bed" -c 20 -bowtie bowtie2 -samtools samtools
+    java -jar "${melt}/MELT.jar" Single -bamfile "$cram" -w output -t "${melt}/me_refs/Hg38/ALU_MELT.zip" -h "$fasta" -n "${melt}/add_bed_files/Hg38/Hg38.genes.bed" -c 20 #-bowtie bowtie2 -samtools samtools
 
     # LINEs
-    java -jar "${melt}/MELT.jar" Single -bamfile "$cram" -w output -t "${melt}/me_refs/Hg38/LINE1_MELT.zip" -h "$fasta" -n "${melt}/add_bed_files/Hg38/Hg38.genes.bed" -c 20 -bowtie bowtie2 -samtools samtools
+    java -jar "${melt}/MELT.jar" Single -bamfile "$cram" -w output -t "${melt}/me_refs/Hg38/LINE1_MELT.zip" -h "$fasta" -n "${melt}/add_bed_files/Hg38/Hg38.genes.bed" -c 20 #-bowtie bowtie2 -samtools samtools
 
     # SVAs
-    java -jar "${melt}/MELT.jar" Single -bamfile "$cram" -w output -t "${melt}/me_refs/Hg38/SVA_MELT.zip" -h "$fasta" -n "${melt}/add_bed_files/Hg38/Hg38.genes.bed" -c 20 -bowtie bowtie2 -samtools samtools
+    java -jar "${melt}/MELT.jar" Single -bamfile "$cram" -w output -t "${melt}/me_refs/Hg38/SVA_MELT.zip" -h "$fasta" -n "${melt}/add_bed_files/Hg38/Hg38.genes.bed" -c 20 #-bowtie bowtie2 -samtools samtools
 
 }
 
