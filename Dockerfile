@@ -12,7 +12,7 @@ RUN apt-get update && apt-get install -y \
     build-essential \
     samtools \
     parallel \
-    openjdk-20-jre-headless \
+    openjdk-17-jre-headless \
     bowtie2
 
 WORKDIR /usr/local/bin
