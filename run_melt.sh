@@ -37,6 +37,7 @@ process_file() {
     # SVAs
     java -jar "${melt}/MELT.jar" Single -bamfile "$cram" -w output -t "${melt}/me_refs/Hg38/SVA_MELT.zip" -h "$fasta" -n "${melt}/add_bed_files/Hg38/Hg38.genes.bed" -c 20 -bowtie bowtie2 -samtools samtools
 
+}
 
 # command-line (cwl file) arguments
 cram1="$1"
