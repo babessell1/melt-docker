@@ -47,13 +47,20 @@ fasta="$3"
 fastaidx="$4"
 melt="$5"
 
-# melt folder was tar format when uploaded to aws bucket
-melt=$(tar -xvf "$melt")
+echo "preuntar"
+echo "$(ls)"
+
 
 # unzip all the files within the melt folder
 tar -xf "${melt}"
 
+melt="$(basename "$melt" .tar)"
+
+echo "postuntar"
 echo "$(ls)"
+
+echo "inside tar"
+echo "$(ls $melt)"
 
 # out = dir to export to
 mkdir -p output
