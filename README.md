@@ -1,3 +1,2 @@
-# strling-docker
-Automated Docker containerization for STRling
-Just to test, change after for correct callers!
+# build a docker container to run melt (NO MELT SOFTWARE ACTUALLY INSTALLED DUE TO WEIRD LICENSE) must download melt binaries and melt-specific reference
+
